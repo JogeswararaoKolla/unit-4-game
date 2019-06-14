@@ -12,167 +12,166 @@
     <!-- Added link to the jQuery Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <style>
-
-       
         h1 {
-            text-align: left;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-size: 50px;
         }
 
-.button
-{
-    background-color:rgb(205, 255, 251)
-
-}
         .scoreGame {
             height: 100px;
             width: 200px;
             text-align: center;
-            padding-top:35px;
-            color: cadetblue;
-            background-color: burlywood;
+            padding-top: 35px;
+            color: white;
+            background-color: purple;
             margin-right: 20px;
             float: left;
         }
 
-     #textAreaId{
-
-        height: 100px;
+        #textAreaId {
+            height: 100px;
             width: 75px;
-            text-align: auto;
-            padding-top:35px;
-            color: cadetblue;
-            background-color: burlywood;
+            text-align: center;
+            padding-top: 20px;
+            color: white;
+            margin-right: 20px;
+            background-color: blueviolet;
             float: left;
-     }
+        }
 
+        #textAreaId2 {
+            height: 100px;
+            width: 75px;
+            text-align: center;
+            padding-top: 20px;
+            color: white;
+            background-color: rgb(47, 0, 255);
+            float: left;
+        }
+
+        #crsytal-Images {
+            margin-top: 20px;
+        }
     </style>
 
 </head>
 
-<body background="assets/images/Image_3.jpeg" >
+<body background="assets/images/crystal 2.jpg">
 
     <div id="container-fluid">
 
-  <div class="row">
-      <div class="col-md-12">
-            <h1> Crystals Game !!! </h1>
-      </div>
-  </div>
-   
- <div class="row">
-     <div class="col-md-6">
-            <div class="scoreGame"> Game Score: <span id="scoreGameid"></span></div>
-            <div id="textAreaId">
-            <div> <span id="textArea"></span></div>
-            <div>Wins: <span id="Wins"></span></div>
-            <div>Loses: <span id="Loses"></span></div>
+        <div class="row">
+            <div class="col-md-12">
+                <h1> Crystal Collector !!! </h1>
             </div>
-            <br>        
-     </div>
-
- </div>
-
-  <div class="row">
-      <div class="col-md-6">
-        <div id="crsytal-Images">
-            <button class="button" id="button-Image1"><img id="crystal-Image1" src="assets/images/Image1.jpeg" width=100px;
-                    height=75px;></button>
-            <button class="button" id="button-Image2"><img id="crystal-Image2" src="assets/images/Image2.jpeg" width=75px;
-                    height=75px;></button>
-            <button class="button" id="button-Image3"><img id="crystal-Image3" src="assets/images/Image3.jpeg" width=75px;
-                    height=75px;></button>
-            <button class="button" id="button-Image4"><img id="crystal-Image4" src="assets/images/Image4.jpeg" width=75px;
-                    height=75px;></button>
         </div>
-      </div>
-  </div>
 
-  <div class="row">
-      <div class="col-md-6">
-          <div>Your Score is: <span id="yourscoreGameid"></span> </div>
-      </div>
-  </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="scoreGame"> Game Score: <span id="scoreGameid"></span></div>
+                <div id="textAreaId">
+                    <div> <span id="textArea"></span></div>
+                    <div>Wins: <span id="Wins"></span></div>
+                    <div>Loses: <span id="Loses"></span></div>
+                </div>
+                <div id="textAreaId2">Your Score is: <span id="yourscoreGameid"></span> </div>
 
-  
+                <br>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div id="crsytal-Images">
+                    <button class="button" id="button-Image1"><img src="assets/images/1.jpg" width=75px;
+                            height=75px;></button>
+                    <button class="button" id="button-Image2"><img src="assets/images/2.jpg" width=75px;
+                            height=75px;></button>
+                    <button class="button" id="button-Image3"><img src="assets/images/3.jpg" width=75px;
+                            height=75px;></button>
+                    <button class="button" id="button-Image4"><img src="assets/images/4.jpg" width=75px;
+                            height=75px;></button>
+                </div>
+            </div>
+        </div>
 
 
-    <script>
+        <script>
 
-        // * The random number shown at the start of the game should be between 19 - 120.
-        // * Each crystal should have a random hidden value between 1 - 12.
+            // * The random number shown at the start of the game should be between 19 - 120.
+            // * Each crystal should have a random hidden value between 1 - 12.
 
-        let gameScore = 0;
-        let gameScoreCurrent = [];
-        let gamestart = true;
-        let gameScorerunning=0;
-        let winsCount = 0;
-        let LosesCount = 0;
+            let gameScore = 0;
+            let gameScoreCurrent = [];
+            let gamestart = true;
+            let gameScorerunning = 0;
+            let winsCount = 0;
+            let LosesCount = 0;
 
-        function getRandomIntInclusive(min, max) {
-            min = Math.ceil(min);
-            max = Math.floor(max);
-            return Math.floor(Math.random() * (max - min + 1)) + min;
-            //The maximum is inclusive and the minimum is inclusive 
-        }
-
-        function gameStart() {
-
-            gameScore = 0;
-            gameScoreCurrent = [];
-            gamestart = true;
-            gameScorerunning=0;
-
-            gameScore = getRandomIntInclusive(19, 120);
-            console.log(gameScore);
-            // This while loop to make sure no duplicate score values assgined to the crystals
-            while (gameScoreCurrent.length < 4) {
-                let randomValue = getRandomIntInclusive(1, 12);
-                console.log(randomValue);
-                if (!gameScoreCurrent.includes(randomValue))
-                    gameScoreCurrent.push(randomValue);
+            function getRandomIntInclusive(min, max) {
+                min = Math.ceil(min);
+                max = Math.floor(max);
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+                //The maximum is inclusive and the minimum is inclusive 
             }
 
-            $("#button-Image1").attr("data-button-value", gameScoreCurrent[0]);
-            $("#button-Image2").attr("data-button-value", gameScoreCurrent[1]);
-            $("#button-Image3").attr("data-button-value", gameScoreCurrent[2]);
-            $("#button-Image4").attr("data-button-value", gameScoreCurrent[3]);
-            $("#scoreGameid").text(gameScore);
-            $("#Wins").text(winsCount);
-            $("#Loses").text(LosesCount);
-            $("#yourscoreGameid").text(gameScorerunning);
+            function gameStart() {
 
-        }
+                gameScore = 0;
+                gameScoreCurrent = [];
+                gamestart = true;
+                gameScorerunning = 0;
 
-        gameStart();
+                gameScore = getRandomIntInclusive(19, 120);
+                console.log(gameScore);
+                // This while loop to make sure no duplicate score values assgined to the crystals
+                while (gameScoreCurrent.length < 4) {
+                    let randomValue = getRandomIntInclusive(1, 12);
+                    console.log(randomValue);
+                    if (!gameScoreCurrent.includes(randomValue))
+                        gameScoreCurrent.push(randomValue);
+                }
 
-        $(".button").on('click', function () {
-            console.log($(this).attr("data-button-value"));
-            gameScorerunning = gameScorerunning + parseInt($(this).attr("data-button-value"));
-            console.log("Game Score running total:" + gameScorerunning);
-            $("#yourscoreGameid").text(gameScorerunning);
-           
-           if(gameScorerunning==gameScore)
-           {
-               winsCount++;
-               $("#Wins").text(winsCount);
-               $("#textArea").text("You Won!");
-               gameStart();
-           }
-           else if(gameScorerunning > gameScore)
-           {
-               LosesCount++
-               $("#Loses").text(LosesCount);
-               $("#textArea").text("You Lost!");
-               gameStart();
-           }
-        
-        });
+                $("#button-Image1").attr("data-button-value", gameScoreCurrent[0]);
+                $("#button-Image2").attr("data-button-value", gameScoreCurrent[1]);
+                $("#button-Image3").attr("data-button-value", gameScoreCurrent[2]);
+                $("#button-Image4").attr("data-button-value", gameScoreCurrent[3]);
+                $("#scoreGameid").text(gameScore);
+                $("#Wins").text(winsCount);
+                $("#Loses").text(LosesCount);
+                $("#yourscoreGameid").text(gameScorerunning);
 
-      
+            }
+
+            gameStart();
+            $(document).ready(function () {
 
 
-    </script>
+                $(".button").on('click', function () {
+                    console.log($(this).attr("data-button-value"));
+                    gameScorerunning = gameScorerunning + parseInt($(this).attr("data-button-value"));
+                    console.log("Game Score running total:" + gameScorerunning);
+                    $("#yourscoreGameid").text(gameScorerunning);
 
+                    if (gameScorerunning == gameScore) {
+                        winsCount++;
+                        $("#Wins").text(winsCount);
+                        $("#textArea").text("You Won!");
+                        gameStart();
+                    }
+                    else if (gameScorerunning > gameScore) {
+                        LosesCount++
+                        $("#Loses").text(LosesCount);
+                        $("#textArea").text("You Lost!");
+                        gameStart();
+                    }
+
+                });
+
+            });
+            
+        </script>
 </body>
 
 </html>
